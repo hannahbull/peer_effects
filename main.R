@@ -48,7 +48,6 @@ if (dist=="left_tail"){
 }
 
 estimates<- data.frame()
-# estimates <- data.frame(beta_estimate=as.numeric(), var_beta_cluster_estimate_1=as.numeric(), var_beta_cluster_estimate_2=as.numeric(),var_beta_cluster_estimate_3=as.numeric(),var_beta_cluster_estimate_4=as.numeric(), Rsquared=as.numeric())
   
 # S is the number of simulations
  for (s in 1:S) {
@@ -142,11 +141,9 @@ estimates<- data.frame()
   if (no!=1) {
   
     if (m_or_v=="m") {
-      #order_kl= 0.5*(sum(diag((xtx_mean_random/S)^(-1))%*%xtx_mean)-2+log(det(xtx_mean_random/S))-log(det(xtx_mean)))
       order_kl= 0.5*(sum(diag(solve(xtx_mean_random/S)%*%xtx_mean))+sum(diag((xtx_mean_random/S)%*%solve(xtx_mean)))-4)
     }
     if (m_or_v=="v") {
-      #order_kl= 0.5*(sum(diag((xtx_var_random/S)^(-1))%*%xtx_var)-3+log(det(xtx_var_random/S))-log(det(xtx_var)))
       order_kl= 0.5*(sum(diag(solve(xtx_var_random/S)%*%xtx_var))+sum(diag((xtx_var_random/S)%*%solve(xtx_var)))-6)
       }
   }
